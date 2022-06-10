@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/gn/static/css/main.a9e64856.css",
-    "main.js": "/gn/static/js/main.df6894d0.js",
-    "static/js/787.61df5b7b.chunk.js": "/gn/static/js/787.61df5b7b.chunk.js",
-    "index.html": "/gn/index.html",
-    "main.a9e64856.css.map": "/gn/static/css/main.a9e64856.css.map",
-    "main.df6894d0.js.map": "/gn/static/js/main.df6894d0.js.map",
-    "787.61df5b7b.chunk.js.map": "/gn/static/js/787.61df5b7b.chunk.js.map"
+    "main.css": "/andersen-question/static/css/main.a9e64856.css",
+    "main.js": "/andersen-question/static/js/main.e99c7aba.js",
+    "static/js/787.61df5b7b.chunk.js": "/andersen-question/static/js/787.61df5b7b.chunk.js",
+    "index.html": "/andersen-question/index.html",
+    "main.a9e64856.css.map": "/andersen-question/static/css/main.a9e64856.css.map",
+    "main.e99c7aba.js.map": "/andersen-question/static/js/main.e99c7aba.js.map",
+    "787.61df5b7b.chunk.js.map": "/andersen-question/static/js/787.61df5b7b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a9e64856.css",
-    "static/js/main.df6894d0.js"
+    "static/js/main.e99c7aba.js"
   ]
 }
