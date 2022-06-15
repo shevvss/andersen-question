@@ -1,76 +1,180 @@
 import React from 'react';
+// import InputMask from './InputMask';
+import InputWithLabel from './InputWithLabel';
 import styles from './Styles.module.css';
+import TextareaWithLabel from './TextareaWithLabel';
+import Header from './Header';
+import ShowQuestionnaire from './ShowQuestionnaire';
 
 class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: '',
+      surname: '',
+      phone: '',
+      website: '',
+      birthday: '',
+      personality: '',
+      stack: '',
+      description: '',
+      submitted: false,
+    };
+    this.baseState = this.state;
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({ submitted: true });
+    console.log(this.submitted);
+    console.log(this.state.firstName);
+  }
+
+  resetForm = () => {
+    this.setState(this.baseState);
+  };
+
+  submitForm = () => {
+    this.submitted = true;
+  };
+
+  onChange(event) {
+    // debugger;
+    console.log('elem was changed', event.target.value);
+    this.setState({ [event.target.id]: event.target.value });
+  }
+
+  onBlur(event) {
+    console.log('elem was blur', event.target.value);
+    this.setState({ [event.target.id]: event.target.value.trim() });
+  }
+
   render() {
-    return (
-      <div className={styles.container}>
-        <form>
-          <div>
-            <label for='firstName'>Name</label>
-            <input type='text' id='firstName' placeholder='Enter name' />
-          </div>
+    if (this.state.submitted === false) {
+      return (
+        <div className={styles.container}>
+          <Header />
+          <form onSubmit={this.handleSubmit}>
+            <InputWithLabel
+              label='Name'
+              labelFor='name'
+              type='text'
+              id='firstName'
+              placeholder='Enter name'
+              value={this.state.firstName}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              pattern='^[A-ZА-Я].*'
+              title='Имя должно начинаться с большой буквы'
+            />
 
-          <div>
-            <label for='surname'>Surname</label>
-            <input type='text' id='surname' placeholder='Enter surname' />
-          </div>
+            <InputWithLabel
+              label='Surname'
+              labelFor='surname'
+              type='text'
+              id='surname'
+              placeholder='Enter surname'
+              value={this.state.surname}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              pattern='^[A-ZА-Я].*'
+              title='Фамилия должнв начинаться с большой буквы'
+            />
 
-          <div>
-            <label for='birthday'>Date of Birth:</label>
-            <input type='date' id='birthday' />
-          </div>
+            <InputWithLabel
+              label='Date of Birth'
+              labelFor='birthday'
+              type='date'
+              id='birthday'
+              value={this.state.birthday}
+              onChange={this.onChange}
+            />
 
-          <div>
-            <label for='phone'>Phone number:</label>
-            <input type='tel' id='phone' placeholder='Enter phone number:' />
-          </div>
+            {/* <InputMask /> */}
 
-          <div>
-            <label for='website'>Website:</label>
-            <input type='url' id='website' />
-          </div>
+            <InputWithLabel
+              label='Phone number'
+              labelFor='phone'
+              type='tel'
+              id='phone'
+              placeholder='Enter phone number:'
+              value={this.state.phone}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              pattern='\d{1}-\d{4}-\d{2}-\d{2}'
+              title='Телефон в формате: 7-7777-77-77'
+            />
 
-          <div>
-            <label for='personality'>About me:</label>
-            <br />
-            <textarea
+            <InputWithLabel
+              label='Website:'
+              labelFor='website:'
+              type='url'
+              id='website'
+              value={this.state.website}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              pattern='https?://.+'
+              title='Include http://'
+            />
+
+            <TextareaWithLabel
+              forLabel='personality'
+              label='About me:'
               id='personality'
               cols='20'
               rows='7'
               placeholder='Enter text...'
-            ></textarea>
-          </div>
+              value={this.state.personality}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              maxLength='600'
+            />
 
-          <div>
-            <label for='stack'>Technology stack</label>
-            <br />
-            <textarea
+            <TextareaWithLabel
+              forLabel='stack'
+              label='Technology stack'
               id='stack'
               cols='20'
               rows='7'
               placeholder='Enter text...'
-            ></textarea>
-          </div>
+              value={this.state.stack}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              maxLength='600'
+            />
 
-          <div>
-            <label for='description'>Description of the last project</label>
-            <br />
-            <textarea
+            <TextareaWithLabel
+              forLabel='description'
+              label='Description of the last project'
               id='description'
               cols='20'
               rows='7'
               placeholder='Enter text...'
-            ></textarea>
-          </div>
+              value={this.state.description}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              maxLength='600'
+            />
 
-          <div>
-            <button type='reset'>Cancel</button>
-            <button type='submit'>Save</button>
-          </div>
-        </form>
-      </div>
-    );
+            <div>
+              <button onClick={this.resetForm} type='button'>
+                Cancel
+              </button>
+              <button type='submit'>Save</button>
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <>
+          <ShowQuestionnaire user={this.state} />
+        </>
+      );
+    }
   }
 }
 
