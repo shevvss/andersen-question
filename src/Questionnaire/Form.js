@@ -1,5 +1,4 @@
 import React from 'react';
-// import InputMask from './InputMask';
 import InputWithLabel from './InputWithLabel';
 import styles from './Styles.module.css';
 import TextareaWithLabel from './TextareaWithLabel';
@@ -24,6 +23,7 @@ class Form extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.onPhoneChange = this.onPhoneChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -42,13 +42,21 @@ class Form extends React.Component {
   };
 
   onChange(event) {
-    // debugger;
-    console.log('elem was changed', event.target.value);
     this.setState({ [event.target.id]: event.target.value });
   }
 
+  onPhoneChange(event) {
+    const x = event.target.value
+      .replace(/\D/g, '')
+      .match(/(\d{0,1})(\d{0,4})(\d{0,2})(\d{0,2})/);
+    const value = x
+      .slice(1, 5)
+      .filter((item) => item !== '')
+      .join('-');
+    this.setState({ [event.target.id]: value });
+  }
+
   onBlur(event) {
-    console.log('elem was blur', event.target.value);
     this.setState({ [event.target.id]: event.target.value.trim() });
   }
 
@@ -93,8 +101,6 @@ class Form extends React.Component {
               onChange={this.onChange}
             />
 
-            {/* <InputMask /> */}
-
             <InputWithLabel
               label='Phone number'
               labelFor='phone'
@@ -102,7 +108,7 @@ class Form extends React.Component {
               id='phone'
               placeholder='Enter phone number:'
               value={this.state.phone}
-              onChange={this.onChange}
+              onChange={this.onPhoneChange}
               onBlur={this.onBlur}
               pattern='\d{1}-\d{4}-\d{2}-\d{2}'
               title='Телефон в формате: 7-7777-77-77'
