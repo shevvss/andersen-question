@@ -1,4 +1,5 @@
 import React from 'react';
+import stylesShow from './StylesShow.module.css';
 
 class ShowQuestionnaire extends React.Component {
   render() {
@@ -13,8 +14,9 @@ class ShowQuestionnaire extends React.Component {
       description,
     } = this.props.user;
     return (
-      <>
-        <h1>
+      <div className={stylesShow.container}>
+        <h1 className={stylesShow.header}>
+          {' '}
           {firstName} {surname}
         </h1>
         <p>Date of Birth: {birthday}</p>
@@ -23,7 +25,7 @@ class ShowQuestionnaire extends React.Component {
         <p>About me: {personality}</p>
         <p>Technology stack: {stack}</p>
         <p>Description of the last project: {description}</p>
-      </>
+      </div>
     );
   }
 }

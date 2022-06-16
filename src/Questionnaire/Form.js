@@ -176,9 +176,9 @@ class Form extends React.Component {
       );
     } else {
       return (
-        <>
+        <div className={styles.container}>
           <ShowQuestionnaire user={this.state} />
-        </>
+        </div>
       );
     }
   }

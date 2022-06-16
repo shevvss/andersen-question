@@ -45,9 +45,9 @@ class TextareaWithLabel extends React.Component {
           onChange={this.handleChange}
           maxLength={maxLength}
         ></textarea>
-        <p>
+        <div>
           Осталось {maxLength - this.state.count}/{maxLength} символов
-        </p>
+        </div>
       </div>
     );
   }
