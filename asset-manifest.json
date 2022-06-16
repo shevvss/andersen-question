@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/andersen-question/static/css/main.a9e64856.css",
-    "main.js": "/andersen-question/static/js/main.e99c7aba.js",
+    "main.css": "/andersen-question/static/css/main.db6d49a2.css",
+    "main.js": "/andersen-question/static/js/main.1abdec14.js",
     "static/js/787.61df5b7b.chunk.js": "/andersen-question/static/js/787.61df5b7b.chunk.js",
     "index.html": "/andersen-question/index.html",
-    "main.a9e64856.css.map": "/andersen-question/static/css/main.a9e64856.css.map",
-    "main.e99c7aba.js.map": "/andersen-question/static/js/main.e99c7aba.js.map",
+    "main.db6d49a2.css.map": "/andersen-question/static/css/main.db6d49a2.css.map",
+    "main.1abdec14.js.map": "/andersen-question/static/js/main.1abdec14.js.map",
     "787.61df5b7b.chunk.js.map": "/andersen-question/static/js/787.61df5b7b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9e64856.css",
-    "static/js/main.e99c7aba.js"
+    "static/css/main.db6d49a2.css",
+    "static/js/main.1abdec14.js"
   ]
 }
