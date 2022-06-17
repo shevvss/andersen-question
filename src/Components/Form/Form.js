@@ -2,8 +2,8 @@ import React from 'react';
 import InputWithLabel from './InputWithLabel';
 import styles from './Styles.module.css';
 import TextareaWithLabel from './TextareaWithLabel';
-import Header from './Header';
-import ShowQuestionnaire from './ShowQuestionnaire';
+import Header from '../Header/Header';
+import ShowQuestionnaire from '../Show/ShowQuestionnaire';
 
 class Form extends React.Component {
   constructor(props) {
@@ -19,7 +19,8 @@ class Form extends React.Component {
       description: '',
       submitted: false,
     };
-    this.baseState = this.state;
+
+    this.baseState = Object.assign({}, this.state);
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onBlur = this.onBlur.bind(this);
@@ -29,16 +30,10 @@ class Form extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ submitted: true });
-    console.log(this.submitted);
-    console.log(this.state.firstName);
   }
 
   resetForm = () => {
     this.setState(this.baseState);
-  };
-
-  submitForm = () => {
-    this.submitted = true;
   };
 
   onChange(event) {
@@ -46,10 +41,10 @@ class Form extends React.Component {
   }
 
   onPhoneChange(event) {
-    const x = event.target.value
+    const mask = event.target.value
       .replace(/\D/g, '')
       .match(/(\d{0,1})(\d{0,4})(\d{0,2})(\d{0,2})/);
-    const value = x
+    const value = mask
       .slice(1, 5)
       .filter((item) => item !== '')
       .join('-');
@@ -61,7 +56,7 @@ class Form extends React.Component {
   }
 
   render() {
-    if (this.state.submitted === false) {
+    if (!this.state.submitted) {
       return (
         <div className={styles.container}>
           <Header />
@@ -76,7 +71,7 @@ class Form extends React.Component {
               onChange={this.onChange}
               onBlur={this.onBlur}
               pattern='^[A-ZА-Я].*'
-              title='Имя должно начинаться с большой буквы'
+              title='Name should start with a capital letter'
             />
 
             <InputWithLabel
@@ -89,7 +84,7 @@ class Form extends React.Component {
               onChange={this.onChange}
               onBlur={this.onBlur}
               pattern='^[A-ZА-Я].*'
-              title='Фамилия должнв начинаться с большой буквы'
+              title='Surname should start with a capital letter'
             />
 
             <InputWithLabel
@@ -111,12 +106,12 @@ class Form extends React.Component {
               onChange={this.onPhoneChange}
               onBlur={this.onBlur}
               pattern='\d{1}-\d{4}-\d{2}-\d{2}'
-              title='Телефон в формате: 7-7777-77-77'
+              title='Number in the format: 7-7777-77-77'
             />
 
             <InputWithLabel
               label='Website:'
-              labelFor='website:'
+              labelFor='website'
               type='url'
               id='website'
               value={this.state.website}
@@ -127,8 +122,8 @@ class Form extends React.Component {
             />
 
             <TextareaWithLabel
+              label='About me'
               forLabel='personality'
-              label='About me:'
               id='personality'
               cols='20'
               rows='7'
@@ -140,8 +135,8 @@ class Form extends React.Component {
             />
 
             <TextareaWithLabel
-              forLabel='stack'
               label='Technology stack'
+              forLabel='stack'
               id='stack'
               cols='20'
               rows='7'
@@ -153,8 +148,8 @@ class Form extends React.Component {
             />
 
             <TextareaWithLabel
-              forLabel='description'
               label='Description of the last project'
+              forLabel='description'
               id='description'
               cols='20'
               rows='7'

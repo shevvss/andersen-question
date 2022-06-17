@@ -1,22 +1,6 @@
 import React from 'react';
 
 class TextareaWithLabel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
-    // this.onChange = this.onChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.onBlur = this.onBlur.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ count: event.target.value.length });
-    this.props.onChange(event);
-  }
-
   render() {
     const {
       labelFor,
@@ -26,6 +10,7 @@ class TextareaWithLabel extends React.Component {
       rows,
       placeholder,
       value,
+      onChange,
       onBlur,
       maxLength,
     } = this.props;
@@ -42,11 +27,11 @@ class TextareaWithLabel extends React.Component {
           placeholder={placeholder}
           value={value}
           onBlur={onBlur}
-          onChange={this.handleChange}
+          onChange={onChange}
           maxLength={maxLength}
-        ></textarea>
+        />
         <div>
-          Осталось {maxLength - this.state.count}/{maxLength} символов
+          {maxLength - value.length}/{maxLength} characters left
         </div>
       </div>
     );
