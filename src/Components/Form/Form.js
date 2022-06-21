@@ -5,20 +5,21 @@ import TextareaWithLabel from './TextareaWithLabel';
 import Header from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
 
+const initialState = {
+  firstName: '',
+  surname: '',
+  phone: '',
+  website: '',
+  birthday: '',
+  personality: '',
+  stack: '',
+  description: '',
+};
+
 const Form = () => {
-  const [userState, setState] = useState({
-    firstName: '',
-    surname: '',
-    phone: '',
-    website: '',
-    birthday: '',
-    personality: '',
-    stack: '',
-    description: '',
-  });
+  const [userState, setState] = useState(initialState);
 
   const navigate = useNavigate();
-  const baseState = Object.assign({}, userState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,8 +27,9 @@ const Form = () => {
   };
 
   const resetForm = () => {
-    setState(baseState);
+    setState(initialState);
   };
+
   const onChange = (event) => {
     setState((userState) => ({
       ...userState,

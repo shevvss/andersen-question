@@ -32,5 +32,9 @@ p {
 }
 
 .backLink {
+  background: #aaa8a8;
+  border: 1px solid;
   color: rgb(4, 4, 4);
+  padding: 15px 20px;
+  text-decoration: none;
 }
